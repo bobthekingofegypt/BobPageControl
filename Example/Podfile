@@ -1,5 +1,5 @@
 platform :ios, '7.0'
 
-target "Demo" do
+target "BobPageControl" do
   pod "BobPageControl", :path => "../"
 end

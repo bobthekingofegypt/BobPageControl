@@ -1,0 +1,14 @@
+PODS:
+  - BobPageControl (0.1.0)
+
+DEPENDENCIES:
+  - BobPageControl (from `../`)
+
+EXTERNAL SOURCES:
+  BobPageControl:
+    :path: ../
+
+SPEC CHECKSUMS:
+  BobPageControl: 4421dd7732e3f9366648b5998b3a351f7ecc865b
+
+COCOAPODS: 0.32.1

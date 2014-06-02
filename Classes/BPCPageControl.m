@@ -6,7 +6,7 @@
 
 @implementation BPCPageControl {
     NSMutableArray *_entries;
-    
+    CALayer *currentLayer;
     NSInteger _numberOfPages;
 }
 
@@ -21,12 +21,16 @@
         _dotColor = [UIColor grayColor];
         _selectedDotColor = [UIColor blackColor];
         
-        _currentPage = 5;
+        _currentPage = 0;
     }
     return self;
 }
 
 - (void)setNumberOfPages:(NSInteger)numberOfPages {
+    if (currentLayer) {
+        currentLayer.backgroundColor = _dotColor.CGColor;
+    }
+    
     _numberOfPages = numberOfPages;
     //remove any extra pages to bring the count down to new number of pages
     while (_entries.count > numberOfPages) {
@@ -53,13 +57,19 @@
     
     CALayer *dot = [_entries objectAtIndex:_currentPage];
     dot.backgroundColor = _selectedDotColor.CGColor;
+    currentLayer = dot;
 }
 
 - (void)setCurrentPage:(NSUInteger)currentPage {
     _currentPage = currentPage;
     
+    if (currentLayer) {
+        currentLayer.backgroundColor = _dotColor.CGColor;
+    }
+    
     CALayer *dot = [_entries objectAtIndex:currentPage];
     dot.backgroundColor = _selectedDotColor.CGColor;
+    currentLayer = dot;
 }
 
 - (CGPoint)startPoint {
