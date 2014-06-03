@@ -18,7 +18,8 @@
 
 @property (nonatomic) NSUInteger currentPage;
 
-- (void)setNumberOfPages:(NSInteger)numberOfPages;
+@property (nonatomic) NSInteger numberOfPages;
+
 - (void)removePage:(NSInteger)index;
 
 @end

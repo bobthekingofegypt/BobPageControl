@@ -55,12 +55,17 @@
         shape.frame = CGRectMake(startPoint.x + (index*((_dotRadius*2)+_dotGap)), startPoint.y, _dotRadius*2, _dotRadius*2);
     }];
     
-    CALayer *dot = [_entries objectAtIndex:_currentPage];
-    dot.backgroundColor = _selectedDotColor.CGColor;
-    currentLayer = dot;
+    if (numberOfPages > 0 && _currentPage < numberOfPages) {
+        CALayer *dot = [_entries objectAtIndex:_currentPage];
+        dot.backgroundColor = _selectedDotColor.CGColor;
+        currentLayer = dot;
+    }
 }
 
 - (void)setCurrentPage:(NSUInteger)currentPage {
+    if (currentPage >= _entries.count) {
+        return;
+    }
     _currentPage = currentPage;
     
     if (currentLayer) {
@@ -96,6 +101,7 @@
 - (void)removePage:(NSInteger)index {
     CALayer *dot = [_entries objectAtIndex:index];
     [_entries removeObject:dot];
+    _numberOfPages = _entries.count;
     
     [CATransaction begin]; {
         
@@ -117,8 +123,8 @@
                         }
                     }
                 }];
-            
-            
+                
+                
                 [_entries enumerateObjectsUsingBlock:^(CALayer *obj, NSUInteger index, BOOL *stop) {
                     CGPoint point = CGPointMake(startPoint.x + (index*(_dotRadius*2+_dotGap))+_dotGap, obj.position.y);
                     [self addAnimationToLayer:obj translateTo:point];
