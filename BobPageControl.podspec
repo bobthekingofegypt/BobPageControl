@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "BobPageControl"
-  s.version          = "0.1.2"
+  s.version          = "0.1.3"
   s.summary          = "A UIPageControl alternative that supports animating page removal"
   s.description      = <<-DESC
                         Basic implementation of a UIPageControl alternative.  Allows you to remove pages with a simple animation effect.
